@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Clipboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Web Clipboard</h2>
+
+        <form action="/add" method="POST">
+            <textarea name="text" placeholder="Paste or Type Something..."></textarea>
+            <button class="add-btn">Add Clipboard</button>
+        </form>
+
+        {% for item in items %}
+        <div class="card">
+            <small>{{ item.time }}</small>
+            <pre id="t{{ item.id }}">{{ item.text }}</pre>
+            <div class="actions">
+                <button class="copy-btn" onclick="copyText('t{{ item.id }}', this)">
+                    Copy
+                </button>
+
+                <a href="/delete/{{ item.id }}">
+                    <button class="delete-btn" type="button">
+                        Delete
+                    </button>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="{{ url_for('static', filename='script/main.js') }}"></script>
+</body>
+</html>
