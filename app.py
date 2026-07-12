@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, jsonify
 from datetime import datetime
+from uuid import uuid4
 
 from core.utils import (
     load_Data,
@@ -23,19 +24,33 @@ def add():
         data = load_Data()
 
         data.append({
-            "id": len(data)+1,
+            "id": str(uuid4()),
             "text": text,
             "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         })
         save_Data(data)
     return redirect("/")
 
-@app.route("/delete/<int:item_id>")
+@app.route("/delete/<item_id>")
 def delete(item_id):
     data = load_Data()
     data = [i for i in data if i["id"] != item_id]
     save_Data(data)
     return redirect("/")
+
+@app.route("/edit/<item_id>", methods=["POST"])
+def edit(item_id):
+    text = request.form.get("text")
+    data = load_Data()
+    for item in data:
+        if item["id"] == item_id:
+            item["text"] = text
+            item["time"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            break
+
+    save_Data(data)
+    return redirect("/")
+
 
 @app.route("/api")
 def api():

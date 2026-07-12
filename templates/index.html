@@ -20,9 +20,23 @@
         <div class="card">
             <small>{{ item.time }}</small>
             <pre id="t{{ item.id }}">{{ item.text }}</pre>
+            <form id="form{{ item.id }}" action="/edit/{{ item.id }}" method="POST" style="display:none;">
+                <textarea name="text">{{ item.text }}</textarea>
+
+                <div class="form-actions">
+                    <button type="submit" class="form-btn form-save-btn">Save</button>
+                    <button type="button" class="form-btn form-cancel-btn" onclick="cancelEdit('{{ item.id }}')">
+                        Cancel
+                    </button>
+                </div>
+            </form>
             <div class="actions">
-                <button class="copy-btn" onclick="copyText('t{{ item.id }}', this)">
+                <button type="button" class="copy-btn" onclick="copyText('t{{ item.id }}', this)">
                     Copy
+                </button>
+
+                <button type="button" class="edit-btn" onclick="editItem('{{ item.id }}')">
+                    Edit
                 </button>
 
                 <a href="/delete/{{ item.id }}">

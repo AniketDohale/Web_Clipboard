@@ -99,10 +99,16 @@ pre {
     gap: 6px;
 }
 
+.form-actions {
+    margin-top: 8px;
+}
+
 .copy-btn,
-.delete-btn {
+.edit-btn,
+.delete-btn,
+.form-btn {
     border: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
     border-radius: 6px;
     color: white;
     cursor: pointer;
@@ -110,18 +116,30 @@ pre {
     transition: .25s;
 }
 
+.form-save-btn,
 .copy-btn {
     background: #10b981;
 }
 
+.form-save-btn:hover,
 .copy-btn:hover {
     background: #059669;
 }
 
+.edit-btn {
+    background: #1070b9;
+}
+
+.edit-btn:hover {
+    background: #055796;
+}
+
+.form-cancel-btn,
 .delete-btn {
     background: #ef4444;
 }
 
+.form-cancel-btn:hover,
 .delete-btn:hover {
     background: #dc2626;
 }

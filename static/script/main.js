@@ -44,3 +44,13 @@ function fallbackCopy(text, button) {
     }
     document.body.removeChild(textArea);
 }
+
+function editItem(id) {
+    document.getElementById("t" + id).style.display = "none";
+    document.getElementById("form" + id).style.display = "block";
+}
+
+function cancelEdit(id) {
+    document.getElementById("t" + id).style.display = "block";
+    document.getElementById("form" + id).style.display = "none";
+}
