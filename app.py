@@ -26,7 +26,7 @@ def add():
         data.append({
             "id": str(uuid4()),
             "text": text,
-            "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            "time": datetime.now().strftime("%I:%M %p • %d %b %Y")
         })
         save_Data(data)
     return redirect("/")
@@ -45,7 +45,7 @@ def edit(item_id):
     for item in data:
         if item["id"] == item_id:
             item["text"] = text
-            item["time"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            item["time"] = datetime.now().strftime("%I:%M %p • %d %b %Y")
             break
 
     save_Data(data)

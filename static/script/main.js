@@ -7,10 +7,7 @@ function copyText(id, button) {
     if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text)
             .then(() => {
-                button.innerText = "Copied!";
-                setTimeout(() => {
-                    button.innerText = "Copy";
-                }, 1500);
+                showDone(button);
             })
             .catch(() => {
                 fallbackCopy(text, button);
@@ -34,10 +31,7 @@ function fallbackCopy(text, button) {
 
     try {
         document.execCommand("copy");
-        button.innerText = "Copied!";
-        setTimeout(() => {
-            button.innerText = "Copy";
-        }, 1500);
+        showDone(button);
     } 
     catch (err) {
         alert("Copy Failed");
@@ -53,4 +47,16 @@ function editItem(id) {
 function cancelEdit(id) {
     document.getElementById("t" + id).style.display = "block";
     document.getElementById("form" + id).style.display = "none";
+}
+
+function showDone(button) {
+    const img = button.querySelector("img");
+    const originalSrc = img.src;
+
+    img.src = "/static/icons/done.png";
+
+    // Restore Copy icon - 3 Seconds
+    setTimeout(() => {
+        img.src = originalSrc;
+    }, 3000);
 }

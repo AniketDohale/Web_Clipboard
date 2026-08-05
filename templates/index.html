@@ -9,7 +9,9 @@
 
 <body>
     <div class="container">
-        <h2>Web Clipboard</h2>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='logo/logo.png') }}" alt="Logo" class="logo">
+        </div>
 
         <form action="/add" method="POST">
             <textarea name="text" placeholder="Paste or Type Something..."></textarea>
@@ -18,8 +20,26 @@
 
         {% for item in items %}
         <div class="card">
-            <small>{{ item.time }}</small>
+            <div class="actions">
+                <small>{{ item.time }}</small>
+
+                <button type="button" class="copy-btn" onclick="copyText('t{{ item.id }}', this)">
+                    <img src="{{ url_for('static', filename='icons/copy.png') }}" alt="Copy" class="copy-btn-icon">
+                </button>
+
+                <button type="button" class="edit-btn" onclick="editItem('{{ item.id }}')">
+                    <img src="{{ url_for('static', filename='icons/edit.png') }}" alt="Edit" class="edit-btn-icon">
+                </button>
+
+                <a href="/delete/{{ item.id }}">
+                    <button class="delete-btn" type="button">
+                        <img src="{{ url_for('static', filename='icons/delete.png') }}" alt="Delete" class="delete-btn-icon">
+                    </button>
+                </a>
+            </div>
+
             <pre id="t{{ item.id }}">{{ item.text }}</pre>
+
             <form id="form{{ item.id }}" action="/edit/{{ item.id }}" method="POST" style="display:none;">
                 <textarea name="text">{{ item.text }}</textarea>
 
@@ -30,21 +50,6 @@
                     </button>
                 </div>
             </form>
-            <div class="actions">
-                <button type="button" class="copy-btn" onclick="copyText('t{{ item.id }}', this)">
-                    Copy
-                </button>
-
-                <button type="button" class="edit-btn" onclick="editItem('{{ item.id }}')">
-                    Edit
-                </button>
-
-                <a href="/delete/{{ item.id }}">
-                    <button class="delete-btn" type="button">
-                        Delete
-                    </button>
-                </a>
-            </div>
         </div>
         {% endfor %}
     </div>

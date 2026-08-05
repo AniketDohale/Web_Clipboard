@@ -4,11 +4,20 @@
     box-sizing: border-box;
 }
 
+html {
+    scrollbar-gutter: stable;
+    -webkit-tap-highlight-color: transparent;
+}
+
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background: #eef2f7;
     color: #333;
-    padding: 20px;
+    padding: 15px;
+}
+
+a {
+    text-decoration: none;
 }
 
 .container {
@@ -16,17 +25,20 @@ body {
     margin: auto;
 }
 
-h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    color: #1f2937;
-    font-weight: 700;
+.logo-container {
+    display: flex;
     margin-bottom: 15px;
+}
+
+.logo {
+    width: 160px;
+    height: auto;
+    display: block;
 }
 
 form {
     background: #fff;
-    padding: 15px;
+    padding: 12px;
     border-radius: 6px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     margin-bottom: 10px;
@@ -49,7 +61,7 @@ textarea:focus {
 }
 
 .add-btn {
-    margin-top: 10px;
+    margin-top: 6px;
     background: #2563eb;
     color: white;
     border: none;
@@ -67,21 +79,79 @@ textarea:focus {
 .card {
     background: white;
     border-radius: 6px;
-    padding: 15px;
+    padding: 12px;
     margin-bottom: 10px;
     box-shadow: 0 8px 20px rgba(0,0,0,.06);
     transition: .25s;
 }
 
 .card:hover {
-    transform: translateY(-3px);
     box-shadow: 0 12px 30px rgba(0,0,0,.12);
 }
 
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
 .card small {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 12px;
+    color: #333;
+    background: #f1f5f9;
+    border-radius: 6px;
+}
+
+.copy-btn,
+.edit-btn,
+.delete-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.actions img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
     display: block;
-    color: #6b7280;
-    margin-bottom: 12px;
+}
+
+.copy-btn {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid #10b981;
+}
+
+.copy-btn:hover {
+    background: rgba(16, 185, 129, 0.22);
+}
+
+.edit-btn {
+    background: rgba(16, 112, 185, 0.12);
+    border: 1px solid #1070b9;
+}
+
+.edit-btn:hover {
+    background: rgba(16, 112, 185, 0.22);
+}
+
+.delete-btn {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid #ef4444;
+}
+
+.delete-btn:hover {
+    background: rgba(239, 68, 68, 0.22);
 }
 
 pre {
@@ -90,22 +160,14 @@ pre {
     padding: 15px;
     white-space: pre-wrap;
     word-break: break-word;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     border: 1px solid #e5e7eb;
-}
-
-.actions {
-    display: flex;
-    gap: 6px;
 }
 
 .form-actions {
     margin-top: 8px;
 }
 
-.copy-btn,
-.edit-btn,
-.delete-btn,
 .form-btn {
     border: none;
     padding: 5px 10px;
@@ -116,34 +178,18 @@ pre {
     transition: .25s;
 }
 
-.form-save-btn,
-.copy-btn {
+.form-save-btn {
     background: #10b981;
 }
 
-.form-save-btn:hover,
-.copy-btn:hover {
+.form-save-btn:hover {
     background: #059669;
 }
 
-.edit-btn {
-    background: #1070b9;
-}
-
-.edit-btn:hover {
-    background: #055796;
-}
-
-.form-cancel-btn,
-.delete-btn {
+.form-cancel-btn {
     background: #ef4444;
 }
 
-.form-cancel-btn:hover,
-.delete-btn:hover {
+.form-cancel-btn:hover {
     background: #dc2626;
-}
-
-a {
-    text-decoration: none;
 }
