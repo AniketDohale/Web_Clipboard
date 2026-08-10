@@ -19,6 +19,7 @@ def index():
 @app.route("/add", methods=["POST"])
 def add():
     text = request.form.get("text")
+    description = request.form.get("description", "").strip()
 
     if text:
         data = load_Data()
@@ -26,6 +27,7 @@ def add():
         data.append({
             "id": str(uuid4()),
             "text": text,
+            "description": description,
             "time": datetime.now().strftime("%I:%M %p • %d %b %Y")
         })
         save_Data(data)
@@ -41,10 +43,13 @@ def delete(item_id):
 @app.route("/edit/<item_id>", methods=["POST"])
 def edit(item_id):
     text = request.form.get("text")
+    description = request.form.get("description", "").strip()
+
     data = load_Data()
     for item in data:
         if item["id"] == item_id:
             item["text"] = text
+            item["description"] = description
             item["time"] = datetime.now().strftime("%I:%M %p • %d %b %Y")
             break
 

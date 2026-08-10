@@ -15,6 +15,7 @@
 
         <form action="/add" method="POST">
             <textarea name="text" placeholder="Paste or Type Something..."></textarea>
+            <textarea name="description" placeholder="Description..." class="description-input" ></textarea>
             <button class="add-btn">Add Clipboard</button>
         </form>
 
@@ -38,10 +39,13 @@
                 </a>
             </div>
 
+            <div class="item-description"> {{ item.get('description', '') }} </div>
+
             <pre id="t{{ item.id }}">{{ item.text }}</pre>
 
             <form id="form{{ item.id }}" action="/edit/{{ item.id }}" method="POST" style="display:none;">
                 <textarea name="text">{{ item.text }}</textarea>
+                <textarea name="description" class="description-input" placeholder="Description..." >{{ item.get('description', '') }}</textarea>
 
                 <div class="form-actions">
                     <button type="submit" class="form-btn form-save-btn">Save</button>

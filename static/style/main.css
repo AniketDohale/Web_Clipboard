@@ -27,11 +27,11 @@ a {
 
 .logo-container {
     display: flex;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .logo {
-    width: 160px;
+    width: 150px;
     height: auto;
     display: block;
 }
@@ -40,8 +40,8 @@ form {
     background: #fff;
     padding: 12px;
     border-radius: 6px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     margin-bottom: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
 textarea {
@@ -60,8 +60,14 @@ textarea:focus {
     border-color: #3b82f6;
 }
 
+.description-input { 
+    margin-top: 4px; 
+    min-height: 55px; 
+}
+
 .add-btn {
-    margin-top: 6px;
+    display: block;
+    margin: 6px 0 0 auto;
     background: #2563eb;
     color: white;
     border: none;
@@ -80,9 +86,9 @@ textarea:focus {
     background: white;
     border-radius: 6px;
     padding: 12px;
-    margin-bottom: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    margin-bottom: 6px;
     transition: .25s;
+    box-shadow: 0 8px 20px rgba(0,0,0,.06);
 }
 
 .card:hover {
@@ -154,9 +160,20 @@ textarea:focus {
     background: rgba(239, 68, 68, 0.22);
 }
 
+.item-description {
+    margin: 0 2px 4px;
+    padding: 0 2px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #64748b;
+    font-weight: 500;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
 pre {
     background: #f8fafc;
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 15px;
     white-space: pre-wrap;
     word-break: break-word;
