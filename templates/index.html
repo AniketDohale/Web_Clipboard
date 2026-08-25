@@ -8,54 +8,57 @@
 </head>
 
 <body>
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='logo/logo.png') }}" alt="Logo" class="logo">
+    </div>
     <div class="container">
-        <div class="logo-container">
-            <img src="{{ url_for('static', filename='logo/logo.png') }}" alt="Logo" class="logo">
-        </div>
-
-        <form action="/add" method="POST">
-            <textarea name="text" placeholder="Paste or Type Something..."></textarea>
-            <textarea name="description" placeholder="Description..." class="description-input" ></textarea>
-            <button class="add-btn">Add Clipboard</button>
-        </form>
-
-        {% for item in items %}
-        <div class="card">
-            <div class="actions">
-                <small>{{ item.time }}</small>
-
-                <button type="button" class="copy-btn" onclick="copyText('t{{ item.id }}', this)">
-                    <img src="{{ url_for('static', filename='icons/copy.png') }}" alt="Copy" class="copy-btn-icon">
-                </button>
-
-                <button type="button" class="edit-btn" onclick="editItem('{{ item.id }}')">
-                    <img src="{{ url_for('static', filename='icons/edit.png') }}" alt="Edit" class="edit-btn-icon">
-                </button>
-
-                <a href="/delete/{{ item.id }}">
-                    <button class="delete-btn" type="button">
-                        <img src="{{ url_for('static', filename='icons/delete.png') }}" alt="Delete" class="delete-btn-icon">
-                    </button>
-                </a>
-            </div>
-
-            <div class="item-description"> {{ item.get('description', '') }} </div>
-
-            <pre id="t{{ item.id }}">{{ item.text }}</pre>
-
-            <form id="form{{ item.id }}" action="/edit/{{ item.id }}" method="POST" style="display:none;">
-                <textarea name="text">{{ item.text }}</textarea>
-                <textarea name="description" class="description-input" placeholder="Description..." >{{ item.get('description', '') }}</textarea>
-
-                <div class="form-actions">
-                    <button type="submit" class="form-btn form-save-btn">Save</button>
-                    <button type="button" class="form-btn form-cancel-btn" onclick="cancelEdit('{{ item.id }}')">
-                        Cancel
-                    </button>
-                </div>
+        <div class="left-container">
+            <form action="/add" method="POST">
+                <textarea name="text" placeholder="Paste or Type Something..."></textarea>
+                <textarea name="description" placeholder="Description..." class="description-input" ></textarea>
+                <button class="add-btn">Add Clipboard</button>
             </form>
         </div>
-        {% endfor %}
+        
+        <div class="right-container">
+            {% for item in items %}
+            <div class="card">
+                <div class="actions">
+                    <small>{{ item.time }}</small>
+
+                    <button type="button" class="copy-btn" onclick="copyText('t{{ item.id }}', this)">
+                        <img src="{{ url_for('static', filename='icons/copy.png') }}" alt="Copy" class="copy-btn-icon">
+                    </button>
+
+                    <button type="button" class="edit-btn" onclick="editItem('{{ item.id }}')">
+                        <img src="{{ url_for('static', filename='icons/edit.png') }}" alt="Edit" class="edit-btn-icon">
+                    </button>
+
+                    <a href="/delete/{{ item.id }}">
+                        <button class="delete-btn" type="button">
+                            <img src="{{ url_for('static', filename='icons/delete.png') }}" alt="Delete" class="delete-btn-icon">
+                        </button>
+                    </a>
+                </div>
+
+                <div class="item-description"> {{ item.get('description', '') }} </div>
+
+                <pre id="t{{ item.id }}">{{ item.text }}</pre>
+
+                <form id="form{{ item.id }}" action="/edit/{{ item.id }}" method="POST" style="display:none;">
+                    <textarea name="text">{{ item.text }}</textarea>
+                    <textarea name="description" class="description-input" placeholder="Description..." >{{ item.get('description', '') }}</textarea>
+
+                    <div class="form-actions">
+                        <button type="submit" class="form-btn form-save-btn">Save</button>
+                        <button type="button" class="form-btn form-cancel-btn" onclick="cancelEdit('{{ item.id }}')">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
     <script src="{{ url_for('static', filename='script/main.js') }}"></script>
