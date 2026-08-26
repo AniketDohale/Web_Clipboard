@@ -39,9 +39,35 @@ function fallbackCopy(text, button) {
     document.body.removeChild(textArea);
 }
 
+function autoResizeTextarea(textarea) {
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
+}
+
+function setupAutoResize() {
+    document.querySelectorAll("textarea").forEach(function (textarea) {
+        textarea.addEventListener("input", function () {
+            autoResizeTextarea(this);
+        });
+
+        if (textarea.offsetParent !== null) {
+            autoResizeTextarea(textarea);
+        }
+    });
+}
+
 function editItem(id) {
-    document.getElementById("t" + id).style.display = "none";
-    document.getElementById("form" + id).style.display = "block";
+    const content = document.getElementById("t" + id);
+    const form = document.getElementById("form" + id);
+
+    content.style.display = "none";
+    form.style.display = "block";
+
+    form.querySelectorAll("textarea").forEach(function (textarea) {
+        autoResizeTextarea(textarea);
+    });
+
+    form.querySelector("textarea[name='text']").focus();
 }
 
 function cancelEdit(id) {
@@ -60,3 +86,29 @@ function showDone(button) {
         img.src = originalSrc;
     }, 3000);
 }
+
+function linkifyText(text) {
+    const urlRegex = /(https?:\/\/[^\s<]+|www\.[^\s<]+)/gi;
+
+    return text.replace(urlRegex, function (url) {
+        let href = url;
+
+        if (url.toLowerCase().startsWith("www.")) {
+            href = "https://" + url;
+        }
+
+        return `<a href="${href}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+    });
+}
+
+function makeLinksClickable() {
+    document.querySelectorAll("pre[id^='t']").forEach(function (element) {
+        const text = element.textContent;
+        element.innerHTML = linkifyText(text);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    makeLinksClickable();
+    setupAutoResize();
+});
