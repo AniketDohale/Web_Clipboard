@@ -1,3 +1,31 @@
+@font-face {
+    font-family: "Fredoka";
+    src: url("../fonts/Fredoka-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Fredoka";
+    src: url("../fonts/Fredoka-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Fredoka";
+    src: url("../fonts/Fredoka-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Fredoka";
+    src: url("../fonts/Fredoka-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,10 +35,23 @@
 html {
     scrollbar-gutter: stable;
     -webkit-tap-highlight-color: transparent;
+    font-family: "Fredoka", Arial, sans-serif;
+    min-height: 100%;
+}
+
+body,
+button,
+input,
+textarea,
+pre {
+    font-family: inherit;
 }
 
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
     background: #eef2f7;
     color: #333;
     padding: 15px;
@@ -33,6 +74,8 @@ a {
 
 .container {
     /* max-width: 850px; */
+    flex: 1;
+    min-height: 0;
     width: 100%;
     margin: 0;
     display: grid;
@@ -108,7 +151,6 @@ textarea:focus {
     min-width: 0;
     margin-bottom: 6px;
     box-shadow: 0 8px 20px rgba(0,0,0,.06);
-    break-inside: avoid;
     page-break-inside: avoid;
     transition: .25s;
 }
@@ -186,6 +228,7 @@ textarea:focus {
     margin: 0 2px 4px;
     padding: 0 2px;
     font-size: 12px;
+    letter-spacing: 0.4px;
     line-height: 1.4;
     color: #64748b;
     font-weight: 500;
@@ -194,11 +237,13 @@ textarea:focus {
 
 pre {
     background: #f8fafc;
-    border-radius: 8px;
     padding: 10px 15px;
+    font-size: 13px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    letter-spacing: 0.6px;
     white-space: pre-wrap;
     word-break: break-word;
-    border: 1px solid #e5e7eb;
 }
 
 pre a {
@@ -241,6 +286,13 @@ pre a:hover {
 
 .form-cancel-btn:hover {
     background: #dc2626;
+}
+
+.app-footer {
+    text-align: center;
+    padding-top: 10px;
+    font-size: 14px;
+    color: #888;
 }
 
 @media (max-width: 1080px) {

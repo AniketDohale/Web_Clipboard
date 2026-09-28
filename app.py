@@ -9,6 +9,16 @@ from core.utils import (
 
 app = Flask(__name__)
 
+# MAJOR.MINOR.PATCH
+APP_VERSION = "v1.0.2 (Beta)"
+
+# Passing App Version to Every Template
+@app.context_processor
+def inject_app_version():
+    return {
+        "app_version": APP_VERSION
+    }
+
 
 @app.route("/")
 def index():
